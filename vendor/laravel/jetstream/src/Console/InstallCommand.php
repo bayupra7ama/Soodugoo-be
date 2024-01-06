@@ -134,12 +134,10 @@ class InstallCommand extends Command implements PromptsForMissingInput
      */
     protected function configureSession()
     {
-        if (! class_exists('CreateSessionsTable')) {
-            try {
-                $this->call('session:table');
-            } catch (Exception $e) {
-                //
-            }
+        try {
+            $this->call('session:table');
+        } catch (Exception $e) {
+            //
         }
 
         $this->replaceInFile("'SESSION_DRIVER', 'file'", "'SESSION_DRIVER', 'database'", config_path('session.php'));
@@ -356,7 +354,7 @@ EOF;
                 '@inertiajs/vue3' => '^1.0.0',
                 '@tailwindcss/forms' => '^0.5.2',
                 '@tailwindcss/typography' => '^0.5.2',
-                '@vitejs/plugin-vue' => '^4.0.0',
+                '@vitejs/plugin-vue' => '^4.5.0',
                 'autoprefixer' => '^10.4.7',
                 'postcss' => '^8.4.14',
                 'tailwindcss' => '^3.1.0',
